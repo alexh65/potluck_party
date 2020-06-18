@@ -1,13 +1,11 @@
 from datetime import date
-# from sqlalchemy import Relationship
-
 from app import db
 
 
 class Recipe(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey('user_info.id', onupdate='CASCADE', ondelete='CASCADE'), nullable=False)
-  date_created = db.Column(db.Date, nullable=False, default=date.today())
+  date_created = db.Column(db.Date, nullable=False)
   recipe_desc = db.Column(db.String(225))
   recipe_result_pic = db.Column(db.String(200))
   prep_time = db.Column(db.Integer)
