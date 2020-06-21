@@ -1,72 +1,51 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        frontend
-      </h1>
-      <h2 class="subtitle">
-        For my Potluck Party app
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+  <div class="main">
+    <div class="banner">
+      <h1>WELCOME TO</h1>
+      <img id="welcome" src="~/assets/icons/logo_mono_name.svg">
+    </div>
+    <div class="buttons">
+      <b-button class="btn-blue">SIGN UP</b-button>
+      <b-button class="btn-blue">LOGIN</b-button>
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
 export default {
-  components: {
-    Logo
-  }
+  layout: 'no-nav'
 }
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
+<style scoped>
+h1 {
+  padding: 3vh;
+}
+.main {
+  background-color: #cd5c5c;
+  height: inherit;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
+}
+.banner{
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+.buttons{
+  padding-top: 2vh;
 }
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.btn-blue{
+  background-color: #0F434F;
+  color: white;
+  border-color: #0F434F;
 }
-
-.links {
-  padding-top: 15px;
+#welcome{
+  width: 40%;
 }
 </style>
