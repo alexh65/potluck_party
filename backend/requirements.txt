@@ -1,0 +1,5 @@
+flask
+flask-migrate
+flask-sqlalchemy
+pip
+python==3.8.3
