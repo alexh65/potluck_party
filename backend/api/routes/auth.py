@@ -1,7 +1,7 @@
 from flask import request
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from api import app
+from api import app, db
 from api.models.user import User_info
 
 
@@ -20,8 +20,8 @@ def make_new_user():
         user_bio=content['user_bio'],
         profile_pic=content['profile_pic'],
     )
-    # db.session.add(user_info)
-    # db.session.commit()
+    db.session.add(user_info)
+    db.session.commit()
     print(user_info)
     return "Received user info"
 

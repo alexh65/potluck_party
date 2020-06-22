@@ -11,7 +11,6 @@ class Recipe(db.Model):
   prep_time = db.Column(db.Integer)
   cook_time = db.Column(db.Integer)
   ingredients = db.relationship('Recipe_ingredient', backref='recipe', lazy='select')
-  steps = db.relationship('Recipe_step', lazy='select')
 
   def __repr__(self):
     return 'Recipe - ' + str(id) + ' by User ' + str(user_id)
@@ -21,7 +20,6 @@ class Ingredient(db.Model):
   ingredient_name = db.Column(db.String(50), nullable=False)
   calories_per_serving = db.Column(db.Integer)
   serving_amount = db.Column(db.String(10))
-  recipes = db.relationship('Recipe_ingredient', lazy='select')
 
   def __repr__(self):
     return 'Ingredient - ' + self.ingredient_name
