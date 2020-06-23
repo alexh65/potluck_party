@@ -4,7 +4,9 @@
     
       <b-form @submit="onSubmit">
         <div id='flex_layout'>
-          <img :src="posted_img" alt=""/>
+          <div class='circular'>
+            <img :src="posted_img" alt=""/>
+          </div>
           <div id='input_form'>
             <b-form-row>
             <b-col>
@@ -108,12 +110,29 @@ export default {
 }
 #input_form {
   flex-grow: 5;
-  padding: 3vw;
+  padding: 2vw;
   margin:auto;
 }
-img{
-  width: 25vw;
-  height: 25vw;
+.circular {
+  width: 20vw;
+  height: 20vw;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  margin: 0 1vw;
+}
+.circular img {
+  min-width: 100%;
+  min-height: 100%;
+  width: 80%;
+  height: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 input {
   margin-bottom: 10px;
