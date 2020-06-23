@@ -1,54 +1,57 @@
 <template>
   <div class="main">
     <h1>New User Information</h1>
-    <b-form @submit="onSubmit">
-      <b-form-row>
-        <b-col>
-          <b-form-input
-            id='first_name'
-            v-model='first_name'
-            required
-            placeholder='First name'
-          ></b-form-input>
-       </b-col>
-        <b-col>
-          <b-form-input
-            id='last_name'
-            v-model='last_name'
-            placeholder='Last name'
-          ></b-form-input>
+    <div id='flex_layout'>
+      <img :src="posted_img" alt=""/>
+      <b-form @submit="onSubmit">
+        <b-form-row>
+          <b-col>
+            <b-form-input
+              id='first_name'
+              v-model='first_name'
+              required
+              placeholder='First name'
+            ></b-form-input>
         </b-col>
-      </b-form-row>
-        
-      <b-form-input
-        id='email_address'
-        v-model='email_address'
-        type='email'
-        required
-        placeholder='Email address'
-      ></b-form-input>
+          <b-col>
+            <b-form-input
+              id='last_name'
+              v-model='last_name'
+              placeholder='Last name'
+            ></b-form-input>
+          </b-col>
+        </b-form-row>
+          
+        <b-form-input
+          id='email_address'
+          v-model='email_address'
+          type='email'
+          required
+          placeholder='Email address'
+        ></b-form-input>
 
-      <b-form-textarea
-        id='user_bio'
-        v-model='user_bio'
-        placeholder='Bio - show us your personality :)'
-        rows='5'
-      ></b-form-textarea>
+        <b-form-textarea
+          id='user_bio'
+          v-model='user_bio'
+          placeholder='Bio - show us your personality :)'
+          rows='5'
+        ></b-form-textarea>
 
-      <b-form-file
-      v-model="file"
-      :state="Boolean(file)"
-      placeholder="Choose or drop a profile picture..."
-      drop-placeholder="Drop file here..."
-      accept=".jpg, .png, .gif"
-    ></b-form-file>
+        <b-form-file
+        v-model="file"
+        :state="Boolean(file)"
+        placeholder="Choose or drop a profile picture..."
+        drop-placeholder="Drop file here..."
+        accept=".jpg, .png, .gif"
+      ></b-form-file>
 
-    <b-button>
-      <nuxt-link to='/'>Go Back</nuxt-link>
-    </b-button>
-    <b-button type="submit" class='btn-blue'>Next</b-button>
-    
-    </b-form>
+      <b-button>
+        <nuxt-link to='/'>Go Back</nuxt-link>
+      </b-button>
+      <b-button type="submit" class='btn-blue'>Next</b-button>
+      
+      </b-form>
+    </div>
   </div>
 </template>
 
@@ -59,6 +62,7 @@ export default {
   layout: 'no-nav',
   data() {
     return {
+      posted_img: require('../assets/icons/question.jpg'),
       first_name: '',
       last_name: '',
       email_address: '',
@@ -67,8 +71,16 @@ export default {
     }
   },
   methods: {
-    onSubmit() {
-      
+    async onSubmit() {
+      axios.post('localhost:5000/signup/info', {
+        first_name: this.first_name,
+        last_name: this.last_name,
+        email_address: this.email_address,
+        user_bio: this.user_bio,
+        profile_pic: this.profile_pic
+      }).then((res) => {
+        console.log(res)
+      })
     }
   }
 }
@@ -80,11 +92,13 @@ export default {
   text-align: center;
 }
 
-form {
-  width:80%;
-  display: inline-block;
+#flex_layout{
+  display: flex;
 }
-
+form {
+  flex-grow: 4;
+  padding: 3vw;
+}
 input {
   margin-bottom: 10px;
 }
