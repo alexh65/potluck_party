@@ -2,13 +2,7 @@ from flask import request
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from api import app, db
-from api.models.user import User_info
-
-
-@app.route('/')
-def hello():
-    return 'Hello World'
-
+from api.models.user import User_info, User_login
 
 @app.route('/signup/info', methods=['POST'])
 def make_new_user():
@@ -21,11 +15,18 @@ def make_new_user():
         profile_pic=content['profile_pic'],
     )
     db.session.add(user_info)
+    db.session.flush()
+
+    user_login = User_login(
+      user_id = user_info.id,
+      username = content['username'],
+      password = content['password'],
+      role = 'ROLE_USER'
+    )
+    
     db.session.commit()
     print(user_info)
+
+    
     return "Received user info"
 
-
-@app.route('/signup/login/', methods=['POST'])
-def user_login():
-    print('whatever')

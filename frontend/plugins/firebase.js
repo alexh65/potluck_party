@@ -1,5 +1,5 @@
 import firebase from 'firebase/app'
-import 'firebase/firestore'
+import 'firebase/storage'
 
 export default ({ env, store }, inject) => {
   const firebaseConfig = {
@@ -13,6 +13,7 @@ export default ({ env, store }, inject) => {
     measurementId: 'G-1VECZH2PT0'
   }
 
+  //prevent initializing firebase more than once
   if (!firebase.apps.length) {
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig)

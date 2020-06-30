@@ -106,6 +106,7 @@ export default {
       const imageRef = storage.ref(`images/` + this.username)
       const uploadTask = imageRef.put(this.input_file).then((snapshot) => {
         snapshot.ref.getDownloadURL().then((url) => {
+          console.log(url)
           this.input_file_url = url
         })
       }).catch((error) => {
@@ -113,7 +114,7 @@ export default {
       })
 
       console.log('Submitting user info....')
-      axios.post('localhost:5000/signup/info', {
+      axios.post('http://localhost:5000/signup/info', {
         first_name: this.first_name,
         last_name: this.last_name,
         email_address: this.email_address,
@@ -121,6 +122,8 @@ export default {
         profile_pic: this.input_file_url
       }).then((res) => {
         console.log(res)
+      }).catch((error) => {
+        console.error('Cannot submit user info')
       })
     },
     updateProfile(e) {
@@ -154,7 +157,8 @@ export default {
   margin:auto;
 }
 .login_info {
-  padding: 2vw;
+  margin-right: 2vw; 
+  margin-left: 2vw;
 }
 .circular {
   width: 20vw;
@@ -162,7 +166,7 @@ export default {
   border-radius: 50%;
   position: relative;
   overflow: hidden;
-  margin: 0 1vw;
+  margin-left: 2vw;
 }
 .circular img {
   min-width: 100%;
