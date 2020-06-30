@@ -23,10 +23,10 @@ def make_new_user():
       password = content['password'],
       role = 'ROLE_USER'
     )
-    
+
+    db.session.add(user_login)
     db.session.commit()
     print(user_info)
 
-    
     return "Received user info"
 
