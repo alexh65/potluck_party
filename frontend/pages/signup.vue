@@ -100,18 +100,16 @@ export default {
     }
   },
   methods: {
-    onSubmit(e) {
+    async onSubmit(e) {
       //upload image to Firebase and obtain the url
-      const storage = this.$firebase.storage()
-      const imageRef = storage.ref(`images/` + this.username)
-      const uploadTask = imageRef.put(this.input_file).then((snapshot) => {
-        snapshot.ref.getDownloadURL().then((url) => {
-          console.log(url)
-          this.input_file_url = url
-        })
-      }).catch((error) => {
-        console.error('Error uploading image', error)
-      })
+      try {
+        const ref = this.$firebbase.storage().ref(`images/${this.username}`)
+        const snapshot = await ref.put(this.input_file)
+        this.input_file_url = (await snapshot.ref.getDownloadURL()).url
+        console.log('URL:', this.input_file_url)
+      } catch(e) {
+        console.log('Error uploading image', e);
+      }
 
       console.log('Submitting user info....')
       axios.post('http://localhost:5000/signup/info', {
@@ -119,7 +117,9 @@ export default {
         last_name: this.last_name,
         email_address: this.email_address,
         user_bio: this.user_bio,
-        profile_pic: this.input_file_url
+        profile_pic: this.input_file_url,
+        username: this.username,
+        password: this.password
       }).then((res) => {
         console.log(res)
       }).catch((error) => {
