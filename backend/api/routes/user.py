@@ -20,11 +20,13 @@ def make_new_user():
     user_login = User_login(
       user_id = user_info.id,
       username = content['username'],
-      password = content['password'],
+      password = generate_password_hash(content['password']),
       role = 'ROLE_USER'
     )
 
     db.session.add(user_login)
+    db.session.flush()
+    
     db.session.commit()
     print(user_info)
 

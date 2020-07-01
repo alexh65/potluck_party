@@ -99,14 +99,17 @@ export default {
       input_file_url: ''
     }
   },
+  created() {
+    console.log(this.$firebase)
+  },
   methods: {
     async onSubmit(e) {
+      console.log(this.$firebase)
       //upload image to Firebase and obtain the url
       try {
-        const ref = this.$firebbase.storage().ref(`images/${this.username}`)
+        const ref = this.$firebase.storage().ref(`images/${this.username}`)
         const snapshot = await ref.put(this.input_file)
-        this.input_file_url = (await snapshot.ref.getDownloadURL()).url
-        console.log('URL:', this.input_file_url)
+        this.input_file_url = await snapshot.ref.getDownloadURL()
       } catch(e) {
         console.log('Error uploading image', e);
       }
