@@ -2,81 +2,81 @@
   <div class="main">
     <h1>New User Information</h1>
     
-      <b-form @submit.prevent="onSubmit">
-        <div id='flex_layout'>
-          <div class='circular'>
-            <img :src="posted_img" alt=""/>
-          </div>
-          <div id='input_form'>
-            <b-form-row>
+    <b-form @submit.prevent="onSubmit">
+      <div id='flex_layout'>
+        <div class='circular'>
+          <img :src="posted_img" alt=""/>
+        </div>
+        <div id='input_form'>
+          <b-form-row>
+          <b-col>
+            <b-form-input
+              id='first_name'
+              v-model='first_name'
+              required
+              placeholder='First name'
+            ></b-form-input>
+          </b-col>
             <b-col>
               <b-form-input
-                id='first_name'
-                v-model='first_name'
-                required
-                placeholder='First name'
+                id='last_name'
+                v-model='last_name'
+                placeholder='Last name'
               ></b-form-input>
             </b-col>
-              <b-col>
-                <b-form-input
-                  id='last_name'
-                  v-model='last_name'
-                  placeholder='Last name'
-                ></b-form-input>
-              </b-col>
-            </b-form-row>
-              
-            <b-form-input
-              id='email_address'
-              v-model='email_address'
-              type='email'
-              required
-              placeholder='Email address'
-            ></b-form-input>
-
-            <b-form-textarea
-              id='user_bio'
-              v-model='user_bio'
-              placeholder='Bio - show us your personality :)'
-              rows='5'
-            ></b-form-textarea>
-
-            <b-form-file
-            v-model="input_file"
-            :state="Boolean(input_file)"
-            placeholder="Choose or drop a profile picture..."
-            drop-placeholder="Drop file here..."
-            accept=".jpg, .png, .gif"
-            @change.prevent="updateProfile"
-            ></b-form-file>
-          </div>
-      </div>
-        <div class='login_info'>
+          </b-form-row>
+            
           <b-form-input
-            id='username'
-            v-model='username'
-            type='text'
+            id='email_address'
+            v-model='email_address'
+            type='email'
             required
-            placeholder='Username'
+            placeholder='Email address'
           ></b-form-input>
-          <div class='password'>
-            <b-form-input
-              id='password'
-              v-model='password'
-              :type='fieldType'
-              required
-              placeholder='Password'
-            ></b-form-input>
-            <b-button class='btn-blue' name='toggle' @click.prevent='switchVisibility'>toggle</b-button>
-          </div>
-          
+
+          <b-form-textarea
+            id='user_bio'
+            v-model='user_bio'
+            placeholder='Bio - show us your personality :)'
+            rows='5'
+          ></b-form-textarea>
+
+          <b-form-file
+          v-model="input_file"
+          :state="Boolean(input_file)"
+          placeholder="Choose or drop a profile picture..."
+          drop-placeholder="Drop file here..."
+          accept=".jpg, .png, .gif"
+          @change.prevent="updateProfile"
+          ></b-form-file>
         </div>
-        
-        <b-button>
-          <nuxt-link to='/'>Go Back</nuxt-link>
-        </b-button>
-        <b-button type="submit" class='btn-blue'>Next</b-button>
-      </b-form>
+    </div>
+
+    <div class='login_info'>
+      <b-form-input
+        id='username'
+        v-model='username'
+        type='text'
+        required
+        placeholder='Username'
+      ></b-form-input>
+      <div class='password'>
+        <b-form-input
+          id='password'
+          v-model='password'
+          :type='fieldType'
+          required
+          placeholder='Password'
+        ></b-form-input>
+        <b-button class='btn-blue' name='toggle' @click.prevent='switchVisibility'>toggle</b-button>
+      </div>
+      
+    </div>
+      
+      <b-button><nuxt-link to='/'>Go Back</nuxt-link></b-button>
+      <b-button type="submit" class='btn-blue'>Next</b-button>
+
+    </b-form>
   </div>
 </template>
 
@@ -85,6 +85,11 @@ import axios from 'axios'
 
 export default {
   layout: 'no-nav',
+  head() {
+    return {
+      title: 'PotluckParty | Sign Up'
+    }
+  },
   data() {
     return {
       username: '',
@@ -124,7 +129,9 @@ export default {
         username: this.username,
         password: this.password
       }).then((res) => {
-        console.log(res)
+        if (res.status == 200) {
+          this.$router.push('/')
+        }
       }).catch((error) => {
         console.error('Cannot submit user info')
       })
@@ -146,13 +153,17 @@ export default {
 </script>
 
 <style scoped>
-.main {
-  height: inherit;
-  text-align: center;
+h1{
+  background-color: black;
+  color: white;
+  padding: 10px;
 }
-
 #flex_layout{
   display: flex;
+}
+form{
+  margin: auto;
+  width: 85%;
 }
 #input_form {
   flex-grow: 5;

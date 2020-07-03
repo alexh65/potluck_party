@@ -10,7 +10,8 @@
         <nuxt-link to='/signup'>
         SIGN UP</nuxt-link>
         </b-button>
-      <b-button class="btn-blue" size="lg">LOGIN</b-button>
+      <b-button class="btn-blue" size="lg"><nuxt-link to='/login'>
+        LOGIN</nuxt-link></b-button>
     </div>
   </div>
 </template>
@@ -35,10 +36,6 @@ p{
   font-size: 2vw;
 }
 .main {
-  background-color: #cd5c5c;
-  height: inherit;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
