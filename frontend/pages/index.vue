@@ -54,14 +54,5 @@ a {
   width: 40%;
 }
 
-.btn-blue {
-  background-color: #0F434F;
-  color: white;
-  border-color: #0F434F;
-}
-.btn-blue:hover {
-  background-color: #092b33;
-  color: white;
-  border-color: #092b33;
-}
+
 </style>

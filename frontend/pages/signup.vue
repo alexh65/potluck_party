@@ -70,13 +70,12 @@
         ></b-form-input>
         <b-button class='btn-blue' name='toggle' @click.prevent='switchVisibility'>toggle</b-button>
       </div>
-      
     </div>
-      
-      <b-button><nuxt-link to='/'>Go Back</nuxt-link></b-button>
-      <b-button type="submit" class='btn-blue'>Next</b-button>
-
+    <b-button type="submit" class='btn-blue'>Submit</b-button>
     </b-form>
+    <b-button class="btn-blue back" size="lg">
+      <nuxt-link to='/'>></nuxt-link>
+    </b-button>
   </div>
 </template>
 
@@ -85,6 +84,7 @@ import axios from 'axios'
 
 export default {
   layout: 'no-nav',
+  transition: 'page',
   head() {
     return {
       title: 'PotluckParty | Sign Up'
@@ -103,9 +103,6 @@ export default {
       input_file: null,
       input_file_url: ''
     }
-  },
-  created() {
-    console.log(this.$firebase)
   },
   methods: {
     async onSubmit(e) {
@@ -130,7 +127,7 @@ export default {
         password: this.password
       }).then((res) => {
         if (res.status == 200) {
-          this.$router.push('/')
+          this.$router.push('/login')
         }
       }).catch((error) => {
         console.error('Cannot submit user info')
@@ -209,17 +206,6 @@ a {
   color: white;
 }
 
-.btn-blue {
-  background-color: #0F434F;
-  color: white;
-  border-color: #0F434F;
-}
-.btn-blue:hover {
-  background-color: #092b33;
-  color: white;
-  border-color: #092b33;
-}
-
 .password{
   position: relative;
   display: flex;
@@ -231,5 +217,9 @@ button[name='toggle']{
   top: 0;
   right: 0;
   margin-top:0;
+}
+
+.back {
+  right: 0;
 }
 </style>
