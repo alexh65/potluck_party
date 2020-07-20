@@ -52,6 +52,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL: 'http://localhost:5000/'
   },
   /*
   ** Build configuration
@@ -61,6 +62,17 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+    }
+  },
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: 'login', method: 'post', propertyName: 'token'},
+          //logout: { url: 'logout', method: 'post'}
+        },
+        tokenType: ''
+      }
     }
   }
 }

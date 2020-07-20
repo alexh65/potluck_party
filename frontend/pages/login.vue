@@ -41,14 +41,22 @@ export default {
   },
   methods: {
     async onSubmit(info){
-      axios.post('http://localhost:5000/login', {
-        username: this.username,
-        password: this.password
-      }).then((res) => {
-        console.log(res)
-      }).catch((error) => {
-        console.error('Cannot login')
+      //first arg: name of oauth strategy
+      //second arg: a hash; data is the most important part of the hash
+      this.$auth.loginWith('local', {
+        data: {
+          username: this.username,
+          password: this.password
+        }
       })
+      // axios.post('http://localhost:5000/login', {
+      //   username: this.username,
+      //   password: this.password
+      // }).then((res) => {
+      //   console.log(res)
+      // }).catch((error) => {
+      //   console.error('Cannot login')
+      // })
     }
   }
 }

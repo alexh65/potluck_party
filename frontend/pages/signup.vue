@@ -71,7 +71,7 @@
         <b-button class='btn-blue' name='toggle' @click.prevent='switchVisibility'>toggle</b-button>
       </div>
     </div>
-    <b-button type="submit" class='btn-blue'>Submit</b-button>
+    <b-button type="submit" class='btn-blue'>{{button_name}}</b-button>
     </b-form>
     <b-button class="btn-blue back" size="lg">
       <nuxt-link to='/'>></nuxt-link>
@@ -101,7 +101,8 @@ export default {
       email_address: '',
       user_bio: '',
       input_file: null,
-      input_file_url: ''
+      input_file_url: '',
+      button_name: 'Submit'
     }
   },
   methods: {
@@ -117,7 +118,7 @@ export default {
       }
 
       console.log('Submitting user info....')
-      axios.post('http://localhost:5000/signup/info', {
+      this.$axios.post("signup/info", {
         first_name: this.first_name,
         last_name: this.last_name,
         email_address: this.email_address,
@@ -127,6 +128,7 @@ export default {
         password: this.password
       }).then((res) => {
         if (res.status == 200) {
+          this.button_name = "Successful! Redirect to login...."
           this.$router.push('/login')
         }
       }).catch((error) => {
