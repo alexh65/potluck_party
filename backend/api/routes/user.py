@@ -32,3 +32,17 @@ def make_new_user():
 
     return "Received user info"
 
+@app.route('/login', methods=['POST'])
+def checkUser():
+  content = request.get_json()
+  request_username = content['username']
+  
+  password = content['password']
+  print('----Received password:', password)
+  stored_pass = User_login.query.filter_by(username=request_username).first().password
+  print('----Stored password:', stored_pass)
+
+  if check_password_hash(stored_pass, password):
+    return "The password is correct", 200
+  
+  return "The password is incorrect", 400

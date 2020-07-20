@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   layout: 'no-nav',
   data(){
@@ -40,7 +41,14 @@ export default {
   },
   methods: {
     async onSubmit(){
-      
+      axios.post('http://localhost:5000/login', {
+        username: this.username,
+        password: this.password
+      }).then((res) => {
+        console.log(res)
+      }).catch((error) => {
+        console.error('Cannot login')
+      })
     }
   }
 }
