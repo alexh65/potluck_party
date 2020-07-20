@@ -40,7 +40,7 @@ export default {
     }
   },
   methods: {
-    async onSubmit(){
+    async onSubmit(info){
       axios.post('http://localhost:5000/login', {
         username: this.username,
         password: this.password
@@ -61,14 +61,13 @@ h1{
   padding: 10px;
 }
 form {
-  width: 50%;
+  width: 60%;
   margin: auto;
 }
-
-input {
-  margin: 10pt;
+input{
+  margin-top: 10pt;
+  margin-bottom: 10pt;
 }
-
 a {
   color: white;
 }

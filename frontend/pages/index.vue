@@ -1,20 +1,22 @@
 <template>
   <div class="main">
     <div v-if="$auth.loggedIn">
-      Hi
+      <UserIndex/>
     </div>
     <div v-else>
-      <NonUserIndex></NonUserIndex>
+      <NonUserIndex/>
     </div>
   </div>
 </template>
 
 <script>
-import NonUserIndex from '../components/NonUserIndex'
+import NonUserIndex from '@/components/NonUserIndex'
+import UserIndex from  '@/components/UserIndex'
 export default {
   layout: 'no-nav',
   components: {
-    NonUserIndex
+    NonUserIndex,
+    UserIndex
   },
   head() {
     return {
