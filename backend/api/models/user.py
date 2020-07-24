@@ -1,5 +1,5 @@
 from sqlalchemy import CheckConstraint
-
+from itsdangerous import (TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired)
 from api import db
 
 
@@ -20,6 +20,24 @@ class User_login(db.Model):
   username = db.Column(db.String(20), unique=True, nullable=False)
   password = db.Column(db.String(128), nullable=False)
   role = db.Column(db.String(50), nullable=False)
+
+  # The token is an encrypted version of a dictionary that has the id of the user
+  def generate_auth_token(self, expiration = 600):
+    s = Serializer(app.config['SECRET_KEY'], expires_in = expiration)
+    return s.dumps({'id': self.user_id})
+  
+  @staticmethod
+  def verify_auth_token(token):
+    s = Serializer(app.config['SECRET_KEY'])
+
+    try:
+      data = s.loads(token)
+    except SignatureExpired:
+      return None # valid token, but expired
+    except BadSignature:
+      return None # invalid token
+    
+    return User.query.get(data['id'])
 
   def __repr__(self):
     return 'Login for User ' + str(self.user_id) + ' - ' + self.username
