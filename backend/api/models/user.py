@@ -1,6 +1,6 @@
 from sqlalchemy import CheckConstraint
 from itsdangerous import (TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired)
-from api import db
+from api import app, db
 
 
 class User_info(db.Model):

@@ -71,7 +71,8 @@ export default {
           login: { url: 'login', method: 'post', propertyName: 'token'},
           logout: { url: 'logout', method: 'post'}
         },
-        tokenType: ''
+        tokenType: 'Bearer',
+        tokenRequired: true
       }
     }
   }

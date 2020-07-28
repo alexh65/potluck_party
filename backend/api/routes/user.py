@@ -66,4 +66,8 @@ def login():
   valid = verify_password(request_username, request_password)
 
   if valid:
-    return { 'token': 'TOKEN'}
+    print('---------------Valid login info----------------')
+    return get_auth_token()
+  
+  print('---------------Invalid login info----------------')
+  return 'The username or password is invalid', 400
