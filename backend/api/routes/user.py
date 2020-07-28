@@ -1,5 +1,4 @@
-from flask import request
-from flask import g
+from flask import request, g, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_httpauth import HTTPBasicAuth
 auth = HTTPBasicAuth()
@@ -67,7 +66,8 @@ def login():
 
   if valid:
     print('---------------Valid login info----------------')
-    return get_auth_token()
+    token = g.user.generate_auth_token()
+    return jsonify({'token': token.decode('ascii')})
   
   print('---------------Invalid login info----------------')
   return 'The username or password is invalid', 400
