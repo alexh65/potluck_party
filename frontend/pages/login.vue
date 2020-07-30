@@ -41,14 +41,21 @@ export default {
   },
   methods: {
     async onSubmit(info){
-      //first arg: name of oauth strategy
-      //second arg: a hash; data is the most important part of the hash
-      this.$auth.loginWith('local', {
-        data: {
-          username: this.username,
-          password: this.password
-        }
-      })
+      
+      try{
+        //first arg: name of oauth strategy
+        //second arg: a hash; data is the most important part of the hash
+        let response = await this.$auth.loginWith('local', {
+                        data: {
+                          username: this.username,
+                          password: this.password
+                        }
+                      })
+        console.log(response)
+        this.$auth.setUserToken(response)
+      } catch (err) {
+        console.log(err)
+      }
       // axios.post('http://localhost:5000/login', {
       //   username: this.username,
       //   password: this.password

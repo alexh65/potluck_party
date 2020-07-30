@@ -1,6 +1,6 @@
 <template>
   <div>
-    Hi, {{ $auth.user.username }}!
+    Hi, {{ this.$auth.user.username }}!
   </div>
 </template>
 

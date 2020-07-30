@@ -12,7 +12,7 @@ class User_info(db.Model):
   profile_pic = db.Column(db.String(225))
 
   def __repr__(self):
-    return 'User ' + str(self.id) + ' - ' + self.email_address
+    return 'User info: ' + str(self.id) + ' - ' + self.email_address
 
 
 class User_login(db.Model):
@@ -35,12 +35,12 @@ class User_login(db.Model):
     except SignatureExpired:
       return None # valid token, but expired
     except BadSignature:
-      return None # invalid token
+      return False # invalid token
     
-    return User.query.get(data['id'])
+    return User_login.query.get(data['id'])
 
   def __repr__(self):
-    return 'Login for User ' + str(self.user_id) + ' - ' + self.username
+    return 'User login: ' + str(self.user_id) + ' - ' + self.username
 
 
 class Friends(db.Model):

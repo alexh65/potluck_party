@@ -69,11 +69,16 @@ export default {
       local: {
         endpoints: {
           login: { url: 'login', method: 'post', propertyName: 'token'},
-          logout: { url: 'logout', method: 'post'}
+          logout: { url: 'logout', method: 'post'},
+          user: {url: 'userInfo', method: 'get', propertyName: 'user'}
         },
         tokenType: 'Bearer',
         tokenRequired: true
       }
     }
-  }
+  // },
+  // router: {
+  //   middleware:['auth']
+  // }
+}
 }

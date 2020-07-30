@@ -1,7 +1,7 @@
 from flask import request, g, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_httpauth import HTTPBasicAuth
-auth = HTTPBasicAuth()
+from flask_httpauth import HTTPTokenAuth
+token_auth = HTTPTokenAuth(scheme='Bearer')
 
 from api import app, db
 from api.models.user import User_info, User_login
@@ -39,22 +39,18 @@ def make_new_user():
     return "Received user info", 201
 
 @app.route('/token')
-@auth.login_required
+@token_auth.login_required
 def get_auth_token():
   token = g.user.generate_auth_token()
   return jsonify({'token': token.decode('ascii')})
 
-@auth.verify_password
-def verify_password(username_or_token, password):
-  # first try to authenticate by token
-    user = User_login.verify_auth_token(username_or_token)
-    if not user:
-        # try to authenticate with username/password
-        user = User_login.query.filter_by(username = username_or_token).first()
-        if not user or not check_password_hash(user.password, password):
-            return False
-    g.user = user
-    return True
+@token_auth.verify_token
+def verify_token(token):
+  print('------In verify_token--------')
+  user = User_login.verify_auth_token(token)
+  print(user)
+  g.user = user
+  return user
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -62,12 +58,21 @@ def login():
   request_username = content['username']
   request_password = content['password']
 
-  valid = verify_password(request_username, request_password)
+  user = User_login.query.filter_by(username = request_username).first()
 
-  if valid:
-    print('---------------Valid login info----------------')
-    token = g.user.generate_auth_token()
-    return jsonify({'token': token.decode('ascii')})
-  
-  print('---------------Invalid login info----------------')
-  return 'The username or password is invalid', 400
+  if not check_password_hash(user.password, request_password):
+    return 'Username or password is invalid. Try again', 400
+
+  g.user = user
+  print(vars(g.user))
+  token = g.user.generate_auth_token()
+  return jsonify({'token': token.decode('ascii')})
+
+@app.route('/userInfo', methods=['GET'])
+@token_auth.login_required
+def userInfo():
+  print('----In userInfo-------')
+  user = g.get('user')
+  return jsonify({'username': user.username})
+
+
