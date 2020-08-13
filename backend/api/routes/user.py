@@ -64,7 +64,6 @@ def login():
     return 'Username or password is invalid. Try again', 400
 
   g.user = user
-  print(vars(g.user))
   token = g.user.generate_auth_token()
   return jsonify({'token': token.decode('ascii')})
 

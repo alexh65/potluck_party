@@ -51,8 +51,7 @@ export default {
                           password: this.password
                         }
                       })
-        console.log(response)
-        this.$auth.setUserToken(response)
+        this.$auth.setUserToken(response["data"]["token"])
       } catch (err) {
         console.log(err)
       }

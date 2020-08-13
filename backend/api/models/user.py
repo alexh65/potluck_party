@@ -22,21 +22,24 @@ class User_login(db.Model):
   role = db.Column(db.String(50), nullable=False)
 
   # The token is an encrypted version of a dictionary that has the id of the user
-  def generate_auth_token(self, expiration = 600):
+  def generate_auth_token(self, expiration = 1000000):
     s = Serializer(app.config['SECRET_KEY'], expires_in = expiration)
     return s.dumps({'id': self.user_id})
   
   @staticmethod
   def verify_auth_token(token):
+    print('------In verify_auth_token-------')
     s = Serializer(app.config['SECRET_KEY'])
-
+    print(token)
     try:
       data = s.loads(token)
     except SignatureExpired:
+      print('Signature Expired')
       return None # valid token, but expired
     except BadSignature:
+      print('Bad Signature')
       return False # invalid token
-    
+    print('Everything ok')
     return User_login.query.get(data['id'])
 
   def __repr__(self):

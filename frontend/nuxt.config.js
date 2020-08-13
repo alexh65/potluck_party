@@ -72,7 +72,7 @@ export default {
           logout: { url: 'logout', method: 'post'},
           user: {url: 'userInfo', method: 'get', propertyName: 'user'}
         },
-        tokenType: 'Bearer',
+        tokenType: 'bearer',
         tokenRequired: true
       }
     }
