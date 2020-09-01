@@ -27,7 +27,6 @@
 <script>
 import axios from 'axios'
 export default {
-  layout: 'no-nav',
   data(){
     return {
       username:'',

@@ -83,7 +83,6 @@
 import axios from 'axios'
 
 export default {
-  layout: 'no-nav',
   transition: 'page',
   head() {
     return {

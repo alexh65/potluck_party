@@ -1,38 +1,41 @@
 <template>
   <div id="page">
-    <b-navbar toggleable="md" type="dark" variant="info">
-      <b-navbar-brand tag="h1" class="mb-0" href="#">Potluck Party</b-navbar-brand>
-      <b-navbar-nav>
-        <b-nav-item href="#">About</b-nav-item>
-        <b-nav-item href="#">FAQ</b-nav-item>
-        <b-nav-item href="#">Contact</b-nav-item>
-      </b-navbar-nav>
-    </b-navbar>
-    <nuxt />
+    <nuxt/>
   </div>
 </template>
 
 <style>
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
-}
-
 #page {
   height:100vh;
-} 
+}
+
+.main{
+  height: inherit;
+  text-align: center;
+  background-color: #cd5c5c;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-blue {
+  background-color: #0F434F;
+  color: white;
+  border-color: #0F434F;
+}
+.btn-blue:hover {
+  background-color: #092b33;
+  color: white;
+  border-color: #092b33;
+}
+.back {
+  width: fit-content;
+  margin: 10pt;
+  position: absolute;
+  bottom: 0;
+}
+
+.back > a:hover{
+  font-size: larger;
+  text-decoration: none;
+}
 </style>

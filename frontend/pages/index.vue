@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <div v-if="$auth.loggedIn">
+    <div v-if="$auth.loggedIn" class="home">
       <UserIndex/>
     </div>
     <div v-else>
@@ -13,7 +13,6 @@
 import NonUserIndex from '@/components/NonUserIndex'
 import UserIndex from  '@/components/UserIndex'
 export default {
-  layout: 'no-nav',
   components: {
     NonUserIndex,
     UserIndex
@@ -30,5 +29,9 @@ export default {
 .main {
   justify-content: center;
   align-items: center;
+}
+.home{
+  width: 100%;
+  height: inherit;
 }
 </style>
