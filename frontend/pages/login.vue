@@ -50,19 +50,11 @@ export default {
                           username: this.username,
                           password: this.password
                         }
-                      })
-        this.$auth.setUserToken(response["data"]["token"])
+                     })
+        this.$router.push('/')
       } catch (err) {
         console.log(err)
       }
-      // axios.post('http://localhost:5000/login', {
-      //   username: this.username,
-      //   password: this.password
-      // }).then((res) => {
-      //   console.log(res)
-      // }).catch((error) => {
-      //   console.error('Cannot login')
-      // })
     }
   }
 }

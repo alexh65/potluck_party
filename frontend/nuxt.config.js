@@ -70,7 +70,7 @@ export default {
         endpoints: {
           login: { url: 'login', method: 'post', propertyName: 'token'},
           logout: { url: 'logout', method: 'post'},
-          user: {url: 'userInfo', method: 'get', propertyName: 'user'}
+          user: {url: 'userInfo', method: 'get', propertyName: false}
         },
         tokenType: 'bearer',
         tokenRequired: true
