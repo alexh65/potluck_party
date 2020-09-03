@@ -1,7 +1,9 @@
 <template>
-  <div>
+  <div class="indexWrapper">
     <NavBar/>
-    Hi, {{ this.$auth.user.username }}!
+    <div class="content">
+      Hi, {{ this.$auth.user.username }}!
+    </div>
   </div>
 </template>
 
@@ -15,5 +17,11 @@ export default {
 </script>
 
 <style scoped>
-
+.content {
+  background-color: white;
+  height: inherit;
+}
+.indexWrapper{
+  height: inherit;
+}
 </style>

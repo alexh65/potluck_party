@@ -1,7 +1,13 @@
 <template>
   <div id="nav">
-    <b-navbar toggleable="md" type="dark" variant="info">
-      <b-navbar-brand tag="h1" class="mb-0" href="#">Potluck Party</b-navbar-brand>
+    <b-navbar type="light">
+      <b-navbar-brand href="#">
+        <img src="~/assets/icons/small_logo.png" width="100%">
+      </b-navbar-brand>
+      <b-nav-form id="search">
+        <b-form-input size="sm" class="mr-sm-2" placeholder="Recipe, user, list,..."></b-form-input>
+        <fa id="search" :icon="['fas', 'search']"/>
+      </b-nav-form>
       <b-navbar-nav>
         <b-nav-item href="#">About</b-nav-item>
         <b-nav-item href="#">FAQ</b-nav-item>
@@ -31,7 +37,20 @@ html {
   margin: 0;
 }
 
-#page {
-  height:100vh;
-} 
+.navbar-brand {
+  width: 10vw;
+  padding: 0;
+}
+svg{
+  color: white;
+}
+#search{
+  background-color: black;
+  border-radius: 5px;
+  padding-right: 5px;
+}
+nav input{
+  margin-right: 5px;
+}
+
 </style>
