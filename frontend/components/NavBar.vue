@@ -1,23 +1,60 @@
 <template>
   <div id="nav">
     <b-navbar type="light">
-      <b-navbar-brand href="#">
-        <img src="~/assets/icons/small_logo.png" width="100%">
-      </b-navbar-brand>
-      <b-nav-form id="search">
-        <b-form-input size="sm" class="mr-sm-2" placeholder="Recipe, user, list,..."></b-form-input>
-        <fa id="search" :icon="['fas', 'search']"/>
-      </b-nav-form>
       <b-navbar-nav>
-        <b-nav-item href="#">About</b-nav-item>
-        <b-nav-item href="#">FAQ</b-nav-item>
-        <b-nav-item href="#">Contact</b-nav-item>
+        <b-navbar-brand href="#">
+          <img src="~/assets/icons/small_logo.png" width="100%">
+        </b-navbar-brand>
+        <b-nav-form id="stuff">
+          <div id="search">
+            <b-form-input size="md" class="mr-sm-2" placeholder="Recipe, user, list,..."></b-form-input>
+            <fa id="search" :icon="['fas', 'search']"/>
+          </div>
+          <b-nav-item-dropdown text="Hello, lexotterly!" right>
+            <b-dropdown-item href="#">Profile</b-dropdown-item>
+            <b-dropdown-item href="#">Saved</b-dropdown-item>
+            <b-dropdown-item href="#">Settings</b-dropdown-item>
+            <div class="dropdown-divider"></div>
+            <b-dropdown-item href="#">Log Out</b-dropdown-item>
+          </b-nav-item-dropdown>
+        </b-nav-form>
       </b-navbar-nav>
     </b-navbar>
   </div>
 </template>
 
 <style>
+
+a{
+  color: black;
+}
+.b-nav-item-dropdown{
+  position: static;
+  float: right;
+}
+
+#search{
+  background-color: black;
+  border-radius: 5px;
+  padding-right: 5px;
+}
+#search input[type="text"]{
+  width: 35vw;
+}
+li.form-inline{
+  width: 100%;
+  font-weight: bold;
+}
+svg{
+  color: white;
+}
+nav input{
+  margin-right: 5px;
+}
+.b-nav-dropdown{
+  position: absolute;
+  right: 10px;
+}
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -41,16 +78,8 @@ html {
   width: 10vw;
   padding: 0;
 }
-svg{
-  color: white;
-}
-#search{
-  background-color: black;
-  border-radius: 5px;
-  padding-right: 5px;
-}
-nav input{
-  margin-right: 5px;
-}
 
+.navbar-nav{
+  width: 100%;
+}
 </style>
