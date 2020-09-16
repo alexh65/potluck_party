@@ -10,18 +10,35 @@
             <b-form-input size="md" class="mr-sm-2" placeholder="Recipe, user, list,..."></b-form-input>
             <fa id="search" :icon="['fas', 'search']"/>
           </div>
-          <b-nav-item-dropdown text="Hello, lexotterly!" right>
+          <b-nav-item-dropdown :text="'Hello, ' + username" right>
             <b-dropdown-item href="#">Profile</b-dropdown-item>
             <b-dropdown-item href="#">Saved</b-dropdown-item>
             <b-dropdown-item href="#">Settings</b-dropdown-item>
             <div class="dropdown-divider"></div>
-            <b-dropdown-item href="#">Log Out</b-dropdown-item>
+            <b-dropdown-item @click="logout">Log out</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-nav-form>
       </b-navbar-nav>
     </b-navbar>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'NavBar',
+  props: {
+    username: {
+      type: String,
+      required: true
+    }
+  },
+  methods:{
+    logout: function (event) {
+      console.log("Clicked")
+    }
+  }
+}
+</script>
 
 <style>
 

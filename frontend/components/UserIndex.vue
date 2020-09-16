@@ -1,6 +1,6 @@
 <template>
   <div class="indexWrapper">
-    <NavBar/>
+    <NavBar :username="this.$auth.user.username"/>
     <div class="content">
       Hi, {{ this.$auth.user.username }}!
     </div>
