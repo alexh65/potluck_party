@@ -15,7 +15,7 @@
             <b-dropdown-item href="#">Saved</b-dropdown-item>
             <b-dropdown-item href="#">Settings</b-dropdown-item>
             <div class="dropdown-divider"></div>
-            <b-dropdown-item @click="logout">Log out</b-dropdown-item>
+            <b-dropdown-item @click="$auth.logout()">Log out</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-nav-form>
       </b-navbar-nav>
@@ -30,11 +30,6 @@ export default {
     username: {
       type: String,
       required: true
-    }
-  },
-  methods:{
-    logout: function (event) {
-      console.log("Clicked")
     }
   }
 }

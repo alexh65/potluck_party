@@ -22,7 +22,7 @@ class User_login(db.Model):
   role = db.Column(db.String(50), nullable=False)
 
   # The token is an encrypted version of a dictionary that has the id of the user
-  def generate_auth_token(self, expiration = 1000000):
+  def generate_auth_token(self, expiration = 10800):
     s = Serializer(app.config['SECRET_KEY'], expires_in = expiration)
     return s.dumps({'id': self.user_id})
   

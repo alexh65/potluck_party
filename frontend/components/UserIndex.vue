@@ -2,7 +2,7 @@
   <div class="indexWrapper">
     <NavBar :username="this.$auth.user.username"/>
     <div class="content">
-      Hi, {{ this.$auth.user.username }}!
+      <!-- Hi, {{ this.$auth.user.username }}! -->
     </div>
   </div>
 </template>

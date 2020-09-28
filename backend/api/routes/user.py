@@ -74,4 +74,9 @@ def userInfo():
   user = g.get('user')
   return jsonify({'username': user.username})
 
-
+@app.route('/logout/', methods=['POST'])
+@token_auth.login_required
+def logout():
+    g.current_user = None # you will need to fix this
+    response = jsonify({'msg': 'logged out successfully'})
+    return response
